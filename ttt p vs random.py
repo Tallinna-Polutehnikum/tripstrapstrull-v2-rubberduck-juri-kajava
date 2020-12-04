@@ -33,6 +33,7 @@ _______________________________
         else:
             BlankBoard = BlankBoard.replace(str(i), ' ')
     print(BlankBoard)
+    return BlankBoard
 
 def player_side():
     player2 = ""
@@ -45,7 +46,6 @@ def player_side():
             validation = True
         else:
             player1 = (input("Error. Please enter 'X' or 'O': ")).upper()
-
     if player1 == "X":
         player2 = "O"
         return player2, player1
@@ -135,6 +135,7 @@ def replay():
         return False
     
 stats = []
+b = ["#"]
 turn = 1
 while True:
     i = 1
@@ -152,7 +153,9 @@ while True:
         i += 1
         game_on = full_board_check(board)
         if win_check(board, marker):
+            result = DisplayBoard(board)
             stats.append(f"{turn}) '{marker}' won")
+            b.append(result)
             turn += 1
             print(f"'{marker}' won!")
             break
@@ -161,6 +164,8 @@ while True:
         turn += 1
         print("It's a draw! Board is full")
     if not replay():
+        g = int(input("choose any turn to see the board"))
+        print(b[g])
         break
     else:
         i = 1
